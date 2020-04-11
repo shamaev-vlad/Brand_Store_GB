@@ -20,7 +20,8 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true
+                sourceMap: true,
+
             }),
             new OptimizeCssAssetsPlugin({})
         ]
@@ -59,9 +60,29 @@ module.exports = {
             filename: 'index.html',
             excludeChunks: ['server']
         }),
+        new HtmlWebpackPlugin({
+            template: 'src/public/catalog.html',
+            filename: 'catalog.html',
+            excludeChunks: ['server']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/public/checkout.html',
+            filename: 'checkout.html',
+            excludeChunks: ['server']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/public/shopping_cart.html',
+            filename: 'shopping_cart.html',
+            excludeChunks: ['server']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/public/single_page.html',
+            filename: 'single_page.html',
+            excludeChunks: ['server']
+        }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             chunkFilename: '[id].css'
-        })
+        }),
     ]
 };

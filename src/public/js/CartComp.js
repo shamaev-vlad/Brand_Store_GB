@@ -2,8 +2,8 @@ Vue.component('cart', {
     props: ['cartItems', 'visibility'],
     template: `<div class="cart__drop" v-show="visibility">
                 <h3 v-if="!cartItems.length" class="cart__block">Cart is empty</h3>
-                <cart-item 
-                v-for="product of cartItems"  
+                <cart-item
+                v-for="product of cartItems"
                 :key="product.id_product"
                 :cart-item="product"></cart-item>
                 <div class="total-cart-flex">

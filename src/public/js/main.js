@@ -10,7 +10,7 @@ const app = new Vue ({
     },
     computed: {
         // Подсчет суммы всех товаров
-        totalSum() {
+        totalSum () {
             let sumProd = [];
             this.cartItems.forEach((el) => sumProd.push(el.price));
             return sumProd;
@@ -143,4 +143,3 @@ const app = new Vue ({
             });
     },
 });
-

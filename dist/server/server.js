@@ -1,1 +1,166 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var u=t[r]={i:r,l:!1,exports:{}};return e[r].call(u.exports,u,u.exports,n),u.l=!0,u.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var u in e)n.d(r,u,function(t){return e[t]}.bind(null,u));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=2)}([function(e,t){e.exports=require("fs")},function(e,t){e.exports=require("express")},function(e,t,n){var r=n(1),u=n(0),o=n(3),i=r(),s=n(6);i.use(r.json()),i.use("/",r.static(s.resolve(__dirname,"../public"))),i.use("/api/cart",o);var c=s.resolve(__dirname,"./db/products.json");i.get("/api/products",(function(e,t){u.readFile(c,"utf-8",(function(e,n){e?t.sendStatus(404,JSON.stringify({result:0,text:e})):t.send(n)}))})),i.listen(3e3,(function(){return console.log("Listen on port 3000...")}))},function(e,t,n){var r=n(1),u=n(4),o=n(0),i=r.Router();i.get("/",(function(e,t){o.readFile("src/server/db/userCart.json","utf-8",(function(e,n){e?t.sendStatus(404,JSON.stringify({result:0,text:e})):t.send(n)}))})),i.post("/",(function(e,t){u(e,t,"add","src/server/db/userCart.json")})),i.put("/:id",(function(e,t){u(e,t,"change","src/server/db/userCart.json")})),i.delete("/:id",(function(e,t){u(e,t,"remove","src/server/db/userCart.json")})),e.exports=i},function(e,t,n){var r=n(5),u=n(0),o={add:r.add,change:r.change,remove:r.remove};e.exports=function(e,t,n,r){u.readFile(r,"utf-8",(function(i,s){if(i)t.sendStatus(404,JSON.stringify({result:0,text:i}));else{var c=o[n](JSON.parse(s),e);u.writeFile(r,c,(function(e){e?t.sendStatus(404,JSON.stringify({result:0,text:e})):t.send({result:1,text:"Success!"})}))}}))}},function(e,t){e.exports={add:function(e,t){return e.contents.push(t.body),JSON.stringify(e,null,4)},change:function(e,t){return e.contents.find((function(e){return e.id_product===+t.params.id})).quantity+=t.body.quantity,JSON.stringify(e,null,4)},remove:function(e,t){var n=e.contents.find((function(e){return e.id_product===+t.params.id}));return e.contents.splice(e.contents.indexOf(n),1),JSON.stringify(e,null,4)}}},function(e,t){e.exports=require("path")}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/server.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/server/cart.js":
+/*!****************************!*\
+  !*** ./src/server/cart.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var add = function add(cart, req) {\n  cart.contents.push(req.body);\n  return JSON.stringify(cart, null, 4);\n};\n\nvar change = function change(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  find.quantity += req.body.quantity;\n  return JSON.stringify(cart, null, 4);\n};\n\nvar remove = function remove(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  cart.contents.splice(cart.contents.indexOf(find), 1); // return {newCart: JSON.stringify(cart, null, 4), name: find.product_name};\n\n  return JSON.stringify(cart, null, 4);\n};\n\nmodule.exports = {\n  add: add,\n  change: change,\n  remove: remove\n};\n\n//# sourceURL=webpack:///./src/server/cart.js?");
+
+/***/ }),
+
+/***/ "./src/server/cartRouter.js":
+/*!**********************************!*\
+  !*** ./src/server/cartRouter.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var express = __webpack_require__(/*! express */ \"express\");\n\nvar handler = __webpack_require__(/*! ./handler */ \"./src/server/handler.js\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar router = express.Router();\nrouter.get('/', function (req, res) {\n  fs.readFile('src/server/db/userCart.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\nrouter.post('/', function (req, res) {\n  handler(req, res, 'add', 'src/server/db/userCart.json');\n});\nrouter.put('/:id', function (req, res) {\n  handler(req, res, 'change', 'src/server/db/userCart.json');\n});\nrouter[\"delete\"]('/:id', function (req, res) {\n  handler(req, res, 'remove', 'src/server/db/userCart.json');\n});\nmodule.exports = router;\n\n//# sourceURL=webpack:///./src/server/cartRouter.js?");
+
+/***/ }),
+
+/***/ "./src/server/handler.js":
+/*!*******************************!*\
+  !*** ./src/server/handler.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var cart = __webpack_require__(/*! ./cart */ \"./src/server/cart.js\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar actions = {\n  add: cart.add,\n  change: cart.change,\n  remove: cart.remove\n};\n\nvar handler = function handler(req, res, action, file) {\n  fs.readFile(file, 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      var newCart = actions[action](JSON.parse(data), req);\n      fs.writeFile(file, newCart, function (err) {\n        if (err) {\n          res.sendStatus(404, JSON.stringify({\n            result: 0,\n            text: err\n          }));\n        } else {\n          res.send({\n            result: 1,\n            text: 'Success!'\n          });\n        }\n      });\n    }\n  });\n};\n\nmodule.exports = handler;\n\n//# sourceURL=webpack:///./src/server/handler.js?");
+
+/***/ }),
+
+/***/ "./src/server/server.js":
+/*!******************************!*\
+  !*** ./src/server/server.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar cartRouter = __webpack_require__(/*! ./cartRouter */ \"./src/server/cartRouter.js\");\n\nvar app = express();\n\nvar path = __webpack_require__(/*! path */ \"path\");\n\napp.use(express.json());\napp.use('/', express[\"static\"](path.resolve(__dirname, '../public')));\napp.use('/api/cart', cartRouter);\nvar catalogJSONPath = path.resolve(__dirname, './db/products.json');\napp.get('/api/products', function (req, res) {\n  fs.readFile(catalogJSONPath, 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\napp.listen(3000, function () {\n  return console.log('Listen on port 3000...');\n});\n\n//# sourceURL=webpack:///./src/server/server.js?");
+
+/***/ }),
+
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"fs\");\n\n//# sourceURL=webpack:///external_%22fs%22?");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+
+/***/ })
+
+/******/ });

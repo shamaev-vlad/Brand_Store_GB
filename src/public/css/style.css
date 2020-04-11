@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@import "catalog.css";
+@import "checkout.css";
+@import "shopping_cart.css";
+@import "single_page.css";
+
 * {
   margin: 0;
   padding: 0;

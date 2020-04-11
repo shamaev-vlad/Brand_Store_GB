@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
@@ -1080,12 +1081,12 @@ summary::after {
 }
 
 /*-----------------------------------DELIVERY BANNER------------------------------*/
-.feature {
+.delivery {
   background-color: #222224;
   margin-top: 110px;
 }
 
-.feature__box {
+.delivery__box {
   display: flex;
   padding-top: 89px;
   padding-bottom: 114px;

@@ -1,11 +1,13 @@
 Vue.component('products', {
     props: ['products'],
-    template: `<div class="product__panel">
-            <product 
-            v-for="product of products" 
+    template: `
+    <div class="product__panel">
+            <product
+            v-for="product of products"
             :key="product.id_product"
             :product="product"></product>
-              </div>`
+              </div>
+            `
 });
 
 Vue.component('product', {
@@ -18,21 +20,23 @@ Vue.component('product', {
             }
         }
     },
-    template: `<div v-if="generatedClassIndex" class="product">
+    template: `
+    <div v-if="generatedClassIndex" class="product">
         <div  :class="generatedClassIndex"></div>
         <div class="product__text">
           <a href="#" class="product__name">{{ product.product_name }}</a>
           <div class="product__price">$ {{ product.price }}</div>
         </div>
-        <a @click="$parent.$emit('add-product', product)" class="product__add"><img class="white__cart" src="img/cart_white.svg" alt="cart">Add to Cart</a>
+        <a @click="$parent.$emit('add-product', product)" class="product__add"><img class="white__cart" src="/img/cart_white.svg" alt="cart">Add to Cart</a>
       </div>`
 });
 
 Vue.component('products-in', {
     props: ['products'],
-    template: `<div class="featured-items-img">
-            <product-in 
-            v-for="product of products" 
+    template: `
+    <div class="featured-items-img">
+            <product-in
+            v-for="product of products"
             :key="product.id_product"
             :product="product"></product-in>
               </div>`
@@ -48,7 +52,8 @@ Vue.component('product-in', {
             }
         }
     },
-    template: `<div v-if="generatedClassProduct" class="product">
+    template: `
+    <div v-if="generatedClassProduct" class="product">
 <div :class="generatedClassProduct"></div>
           <div class="product__text">
             <a href="" class="product__name">{{ product.product_name }}</a>
@@ -62,9 +67,10 @@ Vue.component('product-in', {
 
 Vue.component('products-single', {
     props: ['products'],
-    template: `<div class="women-items-img">
-            <product-single 
-            v-for="product of products" 
+    template: `
+    <div class="women-items-img">
+            <product-single
+            v-for="product of products"
             :key="product.id_product"
             :product="product"></product-single>
               </div>`
@@ -80,7 +86,8 @@ Vue.component('product-single', {
             }
         }
     },
-    template: `<div v-if="generatedClassSingle" class="gallery__product">
+    template: `
+    <div v-if="generatedClassSingle" class="gallery__product">
         <div :class="generatedClassSingle"></div>
             <div class="gallery__text">
                 <a href="#" class="gallery__name">{{ product.product_name }}</a>
