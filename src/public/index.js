@@ -1,0 +1,5 @@
+import '@babel/polyfill'
+import './css/style.css'
+import './js/main.js'
+import './js/CartComp.js'
+import './js/ProdComp.js'
